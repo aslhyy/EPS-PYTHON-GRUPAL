@@ -50,3 +50,14 @@ class GestorAtenciones:
     def listar_atenciones(self):
         # Muestra todas las atenciones registradas pos en la lista
         return self.atenciones
+
+    def generar_resumen(self):
+        # Genera un resumen con la cantidad de atenciones por servicio
+        if not self.atenciones:
+            raise ValueError("No hay atenciones registradas para generar resumen.")
+        
+        resumen = {}
+        for atencion in self.atenciones:
+            servicio = atencion.servicio
+            resumen[servicio] = resumen.get(servicio, 0) + 1
+        return resumen
