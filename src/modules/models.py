@@ -33,3 +33,20 @@ class Atencion:
 
     def __str__(self):
         return f"{self.fecha} - {self.nombre} ({self.servicio}) → {self.resultado}"
+
+
+# Clase encargada de guardar y manejar todas las atenciones
+class GestorAtenciones:
+    def __init__(self):
+        # guardaremos todas las atenciones en una lista
+        self.atenciones = []
+
+    def agregar_atencion(self, atencion):
+        # Agrega una nueva atencion a la lista
+        if not isinstance(atencion, Atencion):
+            raise TypeError("Solo puedes agregar objetos del tipo 'Atencion'.")
+        self.atenciones.append(atencion)
+
+    def listar_atenciones(self):
+        # Muestra todas las atenciones registradas pos en la lista
+        return self.atenciones
