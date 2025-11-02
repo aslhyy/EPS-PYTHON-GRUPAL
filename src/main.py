@@ -52,16 +52,33 @@ def registrar_atencion(gestor):
 
         # Validar formato de fecha
         if not validar_fecha(fecha):
-            print("Fecha inválida. Use el formato YYYY-MM-DD.")
             return
 
+        # === NUEVO BLOQUE: Selección del estado del paciente ===
+        opciones_estado = ["Mala", "Regular", "Aceptable", "Buena", "Excelente"]
+        print("\n--- Seleccione el estado del paciente ---")
+        for i, estado in enumerate(opciones_estado, 1):
+            print(f"{i}. {estado}")
+
+        while True:
+            try:
+                seleccion = int(input("Ingrese el número correspondiente al estado: "))
+                if 1 <= seleccion <= len(opciones_estado):
+                    estado_paciente = opciones_estado[seleccion - 1]
+                    break
+                else:
+                    print("Opción inválida. Intente nuevamente.")
+            except ValueError:
+                print("Ingrese un número válido.")
+
         # Crear objeto y agregar al gestor
-        nueva_atencion = Atencion(nombre, servicio, responsable, fecha, resultado)
+        nueva_atencion = Atencion(nombre, servicio, responsable, fecha, resultado, estado_paciente)
         gestor.agregar_atencion(nueva_atencion)
-        print("Atención registrada exitosamente.")
+        print(f"Atención registrada exitosamente con estado: {estado_paciente}.")
 
     except Exception as e:
         print(f"Error al registrar la atención: {e}")
+
 
 def mostrar_atenciones(gestor):
     """
@@ -75,7 +92,7 @@ def mostrar_atenciones(gestor):
     print("\n--- LISTADO DE ATENCIONES ---")
     for i, atencion in enumerate(atenciones, start=1):
         print(f"{i}. {atencion.nombre} | {atencion.servicio} | "
-              f"{atencion.responsable} | {atencion.fecha} | {atencion.resultado}")
+              f"{atencion.responsable} | {atencion.fecha} | {atencion.resultado} | {atencion.estado}")
 
 def generar_reporte_csv(gestor):
     """
@@ -112,7 +129,7 @@ def main(stdscr):
             curses.endwin()
             print("\n--- LISTADO DE ATENCIONES ---")
             for i, a in enumerate(gestor.listar_atenciones(), start=1):
-                print(f"{i}. {a.nombre} | {a.servicio} | {a.responsable} | {a.fecha} | {a.resultado}")
+                print(f"{i}. {a.nombre} | {a.servicio} | {a.responsable} | {a.fecha} | {a.resultado} | {a.estado}")
             input("\nPresione Enter para continuar...")
         elif seleccion == 2:
             curses.endwin()
