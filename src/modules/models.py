@@ -3,9 +3,9 @@ from datetime import datetime
 
 # Clase que representa una atencion medica en el sistema
 class Atencion:
-    def __init__(self, nombre, servicio, responsable, fecha, resultado):
+    def __init__(self, nombre, servicio, responsable, fecha, resultado, estado):
         # Revisamos que todos los campos estén completos
-        if not all([nombre, servicio, responsable, fecha, resultado]):
+        if not all([nombre, servicio, responsable, fecha, resultado, estado]):
             raise ValueError("Por favor completa todos los campos.")
 
         # Revisamos que la fecha tenga el formato correcto
@@ -20,6 +20,7 @@ class Atencion:
         self.responsable = responsable
         self.fecha = fecha
         self.resultado = resultado
+        self.estado = estado
 
     def to_dict(self):
         # Conviertimos los datos a diccionario
@@ -29,10 +30,11 @@ class Atencion:
             "responsable": self.responsable,
             "fecha": self.fecha,
             "resultado": self.resultado,
+            "estado": self.estado
         }
 
     def __str__(self):
-        return f"{self.fecha} - {self.nombre} ({self.servicio}) → {self.resultado}"
+        return f"{self.fecha} - {self.nombre} ({self.servicio}) → {self.resultado} [Estado: {self.estado}]"
 
 
 # Clase encargada de guardar y manejar todas las atenciones

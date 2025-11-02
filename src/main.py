@@ -92,7 +92,7 @@ def mostrar_atenciones(gestor):
     print("\n--- LISTADO DE ATENCIONES ---")
     for i, atencion in enumerate(atenciones, start=1):
         print(f"{i}. {atencion.nombre} | {atencion.servicio} | "
-              f"{atencion.responsable} | {atencion.fecha} | {atencion.resultado}")
+              f"{atencion.responsable} | {atencion.fecha} | {atencion.resultado} | {atencion.estado}")
 
 def generar_reporte_csv(gestor):
     """
