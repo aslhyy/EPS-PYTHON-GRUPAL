@@ -162,17 +162,17 @@ def generar_graficas(lista_atenciones, salida_dir=None, abrir=False):
         writer.writerow(["Total atenciones", dashboard["total_atenciones"]])
         writer.writerow([])
 
-        writer.writerow(["Por servicio", ""])
+        writer.writerow(["--- Por servicio ---", ""])
         for s, c in dashboard["por_servicio"].items():
             writer.writerow([s, c])
 
         writer.writerow([])
-        writer.writerow(["Por estado", ""])
+        writer.writerow(["--- Por estado ---", ""])
         for e, c in dashboard["por_estado"].items():
             writer.writerow([e, c])
 
         writer.writerow([])
-        writer.writerow(["Por responsable", ""])
+        writer.writerow(["--- Por responsable ---", ""])
         for r, c in dashboard["por_responsable"].items():
             writer.writerow([r, c])
 
