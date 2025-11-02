@@ -52,16 +52,33 @@ def registrar_atencion(gestor):
 
         # Validar formato de fecha
         if not validar_fecha(fecha):
-            print("Fecha inválida. Use el formato YYYY-MM-DD.")
             return
 
+        # === NUEVO BLOQUE: Selección del estado del paciente ===
+        opciones_estado = ["Mala", "Regular", "Aceptable", "Buena", "Excelente"]
+        print("\n--- Seleccione el estado del paciente ---")
+        for i, estado in enumerate(opciones_estado, 1):
+            print(f"{i}. {estado}")
+
+        while True:
+            try:
+                seleccion = int(input("Ingrese el número correspondiente al estado: "))
+                if 1 <= seleccion <= len(opciones_estado):
+                    estado_paciente = opciones_estado[seleccion - 1]
+                    break
+                else:
+                    print("Opción inválida. Intente nuevamente.")
+            except ValueError:
+                print("Ingrese un número válido.")
+
         # Crear objeto y agregar al gestor
-        nueva_atencion = Atencion(nombre, servicio, responsable, fecha, resultado)
+        nueva_atencion = Atencion(nombre, servicio, responsable, fecha, resultado, estado_paciente)
         gestor.agregar_atencion(nueva_atencion)
-        print("Atención registrada exitosamente.")
+        print(f"Atención registrada exitosamente con estado: {estado_paciente}.")
 
     except Exception as e:
         print(f"Error al registrar la atención: {e}")
+
 
 def mostrar_atenciones(gestor):
     """
@@ -94,7 +111,7 @@ def main(stdscr):
     curses.start_color()
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_CYAN)
 
-    opciones = ["Registrar atención", "Ver atenciones", "Generar reporte CSV", "Salir"]
+    opciones = ["Registrar atención", "Ver atenciones", "Estado del paciente", "Generar reporte CSV", "Salir"]
     gestor = GestorAtenciones()
 
     datos = leer_atenciones()
