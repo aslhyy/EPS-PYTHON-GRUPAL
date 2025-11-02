@@ -28,13 +28,13 @@ def generar_graficas(lista_atenciones, salida_dir=None, abrir=False):
     """
     Genera gráficos de barras y pastel sin depender de pandas.
     Recibe una lista de objetos Atencion o diccionarios equivalentes.
-    Guarda las imágenes en data/reports/.
+    Guarda las imágenes en tests/reports/.
     """
     if not lista_atenciones:
         raise ValueError("No hay atenciones para graficar.")
 
     if salida_dir is None:
-        base = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "reports")
+        base = os.path.join(os.path.dirname(os.path.dirname(__file__)), "tests", "reports")
     else:
         base = salida_dir
     _asegurar_dir(base)
