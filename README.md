@@ -30,30 +30,34 @@ El sistema se organiza bajo una estructura modular:
 ```
 EPS/
 │
-├── src/
-│   ├── main.py                # Menú principal y flujo del programa
-│   ├── modules/
-│   │   ├── models.py          # Clases Atencion y GestorAtenciones
-│   │   ├── storage.py         # Lectura y escritura de archivos CSV
-│   │   ├── reports.py         # Generación de reportes y gráficas
-│   │   ├── utils.py           # Validaciones, limpieza de pantalla, fechas
+├── src/                                   # Código fuente principal
+│   ├── main.py                            # Menú principal y flujo del programa
+│   │
+│   ├── modules/                           # Módulos del sistema
+│   │   ├── models.py                      # Clases Atencion y GestorAtenciones
+│   │   ├── storage.py                     # Lectura y escritura de archivos CSV
+│   │   ├── reports.py                     # Generación de reportes y gráficas
+│   │   └── utils.py                       # Validaciones, limpieza de pantalla, fechas
 │
-├── data/
-│    └── reports/
-│       └── csv/
-│         ├── atenciones_por_mes.csv
-│         ├── atenciones_por_servicio.csv
-│         ├── atenciones_de_los_pacientes.csv
-│         ├── dashboard_resumen.csv  
-│       └── img/
-│         ├── atenciones_por_mes.png
-│         ├── atenciones_por_servicio.png
-│         ├── atenciones_de_los_pacientes.png
-│    └── atenciones.csv     # Archivo base con registros
+├── data/                                  # Datos y resultados
+│   ├── atenciones.csv                     # Archivo base con registros
+│   │
+│   └── reports/                           # Carpeta de reportes generados
+│       ├── csv/                           # Archivos de reportes en formato CSV
+│       │   ├── atenciones_por_mes.csv
+│       │   ├── atenciones_por_servicio.csv
+│       │   ├── atenciones_de_los_pacientes.csv
+│       │   └── dashboard_resumen.csv
+│       │
+│       └── img/                           # Gráficos generados por reportes
+│           ├── atenciones_por_mes.png
+│           ├── atenciones_por_servicio.png
+│           └── atenciones_de_los_pacientes.png
 │
-├── tests/                     # Pruebas y archivos de ejemplo
-├── requirements.txt
-└── README.md
+├── tests/                                 # Pruebas y archivos de ejemplo
+│
+├── requirements.txt                       # Dependencias del proyecto
+└── README.md                              # Documentación principal del sistema
 ```
 
 ---
