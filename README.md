@@ -75,8 +75,8 @@ EPS/
 **1.** Clonar el repositorio desde GitHub:
 
    ```bash
-   git clone https://github.com/<usuario>/EPS.git
-   cd EPS
+   https://github.com/aslhyy/EPS-PYTHON-GRUPAL.git 
+   cd EPS-PYTHON-GRUPAL
    ```
 
 **2.** Instalar dependencias necesarias:
