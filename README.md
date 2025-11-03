@@ -37,8 +37,19 @@ EPS/
 │   │   ├── storage.py         # Lectura y escritura de archivos CSV
 │   │   ├── reports.py         # Generación de reportes y gráficas
 │   │   ├── utils.py           # Validaciones, limpieza de pantalla, fechas
-│   └── data/
-│       └── atenciones.csv     # Archivo base con registros
+│
+├── data/
+│    └── reports/
+│       └── csv/
+│         ├── atenciones_por_mes.csv
+│         ├── atenciones_por_servicio.csv
+│         ├── atenciones_de_los_pacientes.csv
+│         ├── dashboard_resumen.csv  
+│       └── img/
+│         ├── atenciones_por_mes.png
+│         ├── atenciones_por_servicio.png
+│         ├── atenciones_de_los_pacientes.png
+│    └── atenciones.csv     # Archivo base con registros
 │
 ├── tests/                     # Pruebas y archivos de ejemplo
 ├── requirements.txt
