@@ -149,8 +149,8 @@ https://github.com/aslhyy/EPS-PYTHON-GRUPAL/commits/main/
 | Integrante                      | Aporte principal                                                                                                                       |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | **Aslhy Casteblanco**           | Integró las validaciones y el flujo principal del programa (`main.py`, `utils.py`), resolución de conflictos y mantenimiento de ramas. <br><br> Generación del archivo README.md y creación de ambiente virtual para `curses`. |
-| **Juan Esteban Riveros Orozco** | Depuración de errores, validación de datos, actualización de funciones de almacenamiento y finalización del producto (`storage.py`). <br><br> Creación de reportes estadísticos con `matplotlib`, manejo de CSV resumen y apoyo en pruebas finales (`reports.py`).        |
-| **Andres M.**                   | Implementación de clases `Atencion` y `GestorAtenciones`, estructura base del sistema y manejo de errores en clases (`models.py`).     |        
+| **Juan Riveros** | Depuración de errores, validación de datos, actualización de funciones de almacenamiento y finalización del producto (`storage.py`). <br><br> Creación de reportes estadísticos con `matplotlib`, manejo de CSV resumen y apoyo en pruebas finales (`reports.py`).        |
+| **Hugo Mancera**                   | Implementación de clases `Atencion` y `GestorAtenciones`, estructura base del sistema y manejo de errores en clases (`models.py`).     |        
 
 ---
 
