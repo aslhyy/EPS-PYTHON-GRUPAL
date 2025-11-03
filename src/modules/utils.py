@@ -8,12 +8,12 @@ def validar_fecha(fecha):
         fecha_actual = datetime.date.today()
         
         if fecha_ingresada < fecha_actual:
-            print("No se puede registrar una fecha anterior a la actual.")
+            print("⚠️ No se puede registrar una fecha anterior a la actual.")
             return False
         
         return True
     except ValueError:
-        print("Formato de fecha inválido. Use YYYY-MM-DD (ej: 2025-11-02).")
+        print("⚠️ Formato de fecha inválido. Use YYYY-MM-DD (ej: 2025-11-02).")
         return False
 
 

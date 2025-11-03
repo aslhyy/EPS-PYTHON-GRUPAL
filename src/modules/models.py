@@ -6,13 +6,13 @@ class Atencion:
     def __init__(self, nombre, servicio, responsable, fecha, resultado, estado):
         # Revisamos que todos los campos estén completos
         if not all([nombre, servicio, responsable, fecha, resultado, estado]):
-            raise ValueError("Por favor completa todos los campos.")
+            raise ValueError("⚠️ Por favor completa todos los campos.")
 
         # Revisamos que la fecha tenga el formato correcto
         try:
             datetime.strptime(fecha, "%Y-%m-%d")
         except ValueError:
-            raise ValueError("La fecha debe tener el formato YYYY-MM-DD.")
+            raise ValueError("⚠️ La fecha debe tener el formato YYYY-MM-DD.")
 
         # Guardamos los datos
         self.nombre = nombre
@@ -46,7 +46,7 @@ class GestorAtenciones:
     def agregar_atencion(self, atencion):
         # Agrega una nueva atencion a la lista
         if not isinstance(atencion, Atencion):
-            raise TypeError("Solo puedes agregar objetos del tipo 'Atencion'.")
+            raise TypeError("⚠️ Solo puedes agregar objetos del tipo 'Atencion'.")
         self.atenciones.append(atencion)
 
     def listar_atenciones(self):
@@ -56,7 +56,7 @@ class GestorAtenciones:
     def generar_resumen(self):
         # Genera un resumen con la cantidad de atenciones por servicio
         if not self.atenciones:
-            raise ValueError("No hay atenciones registradas para generar resumen.")
+            raise ValueError("⚠️ No hay atenciones registradas para generar resumen.")
         
         resumen = {}
         for atencion in self.atenciones:

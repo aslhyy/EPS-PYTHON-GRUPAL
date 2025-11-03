@@ -43,11 +43,11 @@ def generar_graficas(lista_atenciones, salida_dir=None, abrir=False):
     guardándolos en carpetas separadas (img/ y csv/).
     """
     if not lista_atenciones:
-        raise ValueError("No hay atenciones para graficar.")
+        raise ValueError("⚠️ No hay atenciones para graficar.")
 
     # Carpeta base donde se guardan los reportes
     if salida_dir is None:
-        base = os.path.join(os.path.dirname(os.path.dirname(__file__)), "tests", "reports")
+        base = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "reports")
     else:
         base = salida_dir
 

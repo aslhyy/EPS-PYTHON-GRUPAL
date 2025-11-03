@@ -2,7 +2,7 @@ import csv
 import os
 
 # Ruta del archivo CSV
-RUTA_ARCHIVO = os.path.join(os.path.dirname(os.path.dirname(__file__)), "tests", "atenciones.csv")
+RUTA_ARCHIVO = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "atenciones.csv")
 
 def guardar_en_csv(lista_atenciones):
     """

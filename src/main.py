@@ -14,7 +14,7 @@ def mostrar_menu(stdscr, opciones):
 
     while True:
         stdscr.clear()
-        stdscr.addstr(0, 0, "=== SISTEMA DE REGISTRO DE ATENCIÓN EPS ===\n", curses.A_BOLD)
+        stdscr.addstr(0, 0, "=== 🏥 SISTEMA DE REGISTRO DE ATENCIÓN EPS 🏥 ===\n\n", curses.A_BOLD)
 
         for i, opcion in enumerate(opciones):
             if i == seleccion:
@@ -39,16 +39,16 @@ def registrar_atencion(gestor):
     Valida la fecha y maneja excepciones por entradas vacías.
     """
     try:
-        print("\n--- Registrar Nueva Atención ---")
-        nombre = input("Nombre del beneficiario: ").strip()
-        servicio = input("Servicio solicitado: ").strip()
-        responsable = input("Responsable: ").strip()
-        fecha = input("Fecha (YYYY-MM-DD): ").strip()
-        resultado = input("Resultado de la atención: ").strip()
+        print("\n--- 🖇️  Registrar Nueva Atención 🖇️ ---")
+        nombre = input("- Nombre del beneficiario: ").strip()
+        servicio = input("- Servicio solicitado: ").strip()
+        responsable = input("- Responsable: ").strip()
+        fecha = input("- Fecha (YYYY-MM-DD): ").strip()
+        resultado = input("- Resultado de la atención: ").strip()
 
         # Validación básica
         if not all([nombre, servicio, responsable, fecha, resultado]):
-            print("Todos los campos son obligatorios.")
+            print("⚠️ Todos los campos son obligatorios.")
             return
 
         # Validar formato de fecha
@@ -57,7 +57,7 @@ def registrar_atencion(gestor):
 
         # === NUEVO BLOQUE: Selección del estado del paciente ===
         opciones_estado = ["Mala", "Regular", "Aceptable", "Buena", "Excelente"]
-        print("\n--- Seleccione el estado del paciente ---")
+        print("\n--- 📝 Seleccione el estado del paciente 📝 ---")
         for i, estado in enumerate(opciones_estado, 1):
             print(f"{i}. {estado}")
 
@@ -68,17 +68,17 @@ def registrar_atencion(gestor):
                     estado_paciente = opciones_estado[seleccion - 1]
                     break
                 else:
-                    print("Opción inválida. Intente nuevamente.")
+                    print("⚠️ Opción inválida. Intente nuevamente.")
             except ValueError:
-                print("Ingrese un número válido.")
+                print("▶️ Ingrese un número válido.")
 
         # Crear objeto y agregar al gestor
         nueva_atencion = Atencion(nombre, servicio, responsable, fecha, resultado, estado_paciente)
         gestor.agregar_atencion(nueva_atencion)
-        print(f"Atención registrada exitosamente con estado: {estado_paciente}.")
+        print(f"✅ Atención registrada exitosamente con estado: {estado_paciente}.")
 
     except Exception as e:
-        print(f"Error al registrar la atención: {e}")
+        print(f"❌ Error al registrar la atención: {e}")
 
 
 def mostrar_atenciones(gestor):
@@ -87,10 +87,10 @@ def mostrar_atenciones(gestor):
     """
     atenciones = gestor.listar_atenciones()
     if not atenciones:
-        print("\nNo hay atenciones registradas aún.")
+        print("\n⚠️ No hay atenciones registradas aún.")
         return
 
-    print("\n--- LISTADO DE ATENCIONES ---")
+    print("\n--- 📝 LISTADO DE ATENCIONES 📝 ---")
     for i, atencion in enumerate(atenciones, start=1):
         print(f"{i}. {atencion.nombre} | {atencion.servicio} | "
               f"{atencion.responsable} | {atencion.fecha} | {atencion.resultado} | {atencion.estado}")
@@ -101,9 +101,9 @@ def generar_reporte_csv(gestor):
     """
     try:
         guardar_en_csv(gestor.listar_atenciones())
-        print("Reporte CSV generado exitosamente en data/atenciones.csv")
+        print("✅ Reporte CSV generado exitosamente en data/atenciones.csv")
     except Exception as e:
-        print(f"Error al generar el reporte: {e}")
+        print(f"❌ Error al generar el reporte: {e}")
 
 def main(stdscr):
     """
@@ -112,7 +112,7 @@ def main(stdscr):
     curses.start_color()
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_CYAN)
 
-    opciones = ["Registrar atención", "Ver atenciones", "Estado del paciente", "Generar reporte CSV", "Salir"]
+    opciones = ["📝 Registrar atención", "🔎 Ver atenciones", "🖇️   Generar reporte CSV", "  🚪  Salir"]
     gestor = GestorAtenciones()
 
     datos = leer_atenciones()
@@ -125,17 +125,17 @@ def main(stdscr):
         if seleccion == 0:
             curses.endwin()
             registrar_atencion(gestor)
-            input("\nPresione Enter para continuar...")
+            input("\n▶️ Presione Enter para continuar...")
         elif seleccion == 1:
             curses.endwin()
-            print("\n--- LISTADO DE ATENCIONES ---")
+            print("\n--- 📝 LISTADO DE ATENCIONES 📝 ---")
             for i, a in enumerate(gestor.listar_atenciones(), start=1):
                 print(f"{i}. {a.nombre} | {a.servicio} | {a.responsable} | {a.fecha} | {a.resultado} | {a.estado}")
-            input("\nPresione Enter para continuar...")
+            input("\n▶️ Presione Enter para continuar...")
         elif seleccion == 2:
             curses.endwin()
             guardar_en_csv(gestor.listar_atenciones())
-            print("Reporte CSV generado exitosamente.")
+            print("✅ Reporte CSV generado exitosamente.")
 
             # Generar gráficas y dashboard
             try:
@@ -161,11 +161,11 @@ def main(stdscr):
             except Exception as e:
                 print(f"No se pudieron generar gráficos: {e}")
 
-            input("\nPresione Enter para continuar...")
+            input("\n▶️ Presione Enter para continuar...")
 
         elif seleccion == 3:
             curses.endwin()
-            print("\nGracias por usar el sistema. ¡Hasta luego!")
+            print("\n👋 Gracias por usar el sistema. ¡Hasta luego!")
             break
         curses.doupdate()
 
