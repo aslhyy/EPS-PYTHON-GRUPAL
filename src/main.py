@@ -2,6 +2,7 @@ import curses
 
 from modules.models import Atencion, GestorAtenciones
 from modules.storage import guardar_en_csv, leer_atenciones
+from modules.reports import generar_graficas, generar_dashboard_textual
 from modules.utils import validar_fecha, limpiar_pantalla
 
 def mostrar_menu(stdscr, opciones):
@@ -129,13 +130,39 @@ def main(stdscr):
             curses.endwin()
             print("\n--- LISTADO DE ATENCIONES ---")
             for i, a in enumerate(gestor.listar_atenciones(), start=1):
-                print(f"{i}. {a.nombre} | {a.servicio} | {a.responsable} | {a.fecha} | {a.resultado}")
+                print(f"{i}. {a.nombre} | {a.servicio} | {a.responsable} | {a.fecha} | {a.resultado} | {a.estado}")
             input("\nPresione Enter para continuar...")
         elif seleccion == 2:
             curses.endwin()
             guardar_en_csv(gestor.listar_atenciones())
             print("Reporte CSV generado exitosamente.")
+
+            # Generar gráficas y dashboard
+            try:
+                rutas = generar_graficas(gestor.listar_atenciones())
+                dashboard = generar_dashboard_textual(gestor.listar_atenciones())
+
+                # Mostrar dashboard textual
+                print("\n--- DASHBOARD ---")
+                print(f"Atenciones totales: {dashboard.get('total_atenciones', 0)}")
+
+                print("\nAtenciones por servicio:")
+                for serv, cnt in dashboard.get("por_servicio", {}).items():
+                    print(f"  {serv}: {cnt}")
+
+                print("\nAtenciones por estado:")
+                for est, cnt in dashboard.get("por_estado", {}).items():
+                    print(f"  {est}: {cnt}")
+
+                print("\nImágenes generadas:")
+                for k, p in rutas.items():
+                    print(f"  {k}: {p}")
+
+            except Exception as e:
+                print(f"No se pudieron generar gráficos: {e}")
+
             input("\nPresione Enter para continuar...")
+
         elif seleccion == 3:
             curses.endwin()
             print("\nGracias por usar el sistema. ¡Hasta luego!")
